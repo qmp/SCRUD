@@ -1,0 +1,8 @@
+target/classes
+target/test-classes
+target/surefire-reports
+target/*.jar
+target/maven-archiver
+target/site
+mainDB
+*.log

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="org.defunct.scrud.business.SimpleEntity" table="SIMPLE_ENTITY">
+        <id name="id">
+            <column name="ID"/>
+            <--See  http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html_single/#portability-idgen -->
+            <generator class="increment"/>
+        </id>
+        <property name="createdDate" type="date">
+            <column name="CREATED_DATE" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
