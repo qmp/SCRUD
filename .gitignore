@@ -4,5 +4,6 @@ target/surefire-reports
 target/*.jar
 target/maven-archiver
 target/site
+target/*src*
 mainDB
 *.log

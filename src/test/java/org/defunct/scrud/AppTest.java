@@ -1,38 +1,45 @@
 package org.defunct.scrud;
 
-import junit.framework.Test;
-import junit.framework.TestCase;
-import junit.framework.TestSuite;
+import org.testng.annotations.Test;
+
+import java.util.Date;
+import org.defunct.scrud.business.SimpleEntity;
+import org.defunct.scrud.util.HibernateUtil;
+import org.hibernate.Session;
+import org.hibernate.cfg.Configuration;
+import org.hibernate.tool.hbm2ddl.SchemaExport;
+import org.testng.annotations.BeforeClass;
 
 /**
  * Unit test for simple App.
  */
-public class AppTest 
-    extends TestCase
-{
-    /**
-     * Create the test case
-     *
-     * @param testName name of the test case
-     */
-    public AppTest( String testName )
-    {
-        super( testName );
-    }
+public class AppTest {
 
+    @BeforeClass
     /**
-     * @return the suite of tests being tested
+     * Prepare the hibernate database for this application :
+     *  - Create the database schema from the hibernate mapping
+     *  - Apply the database schema to the database
+     * Note : this won't write the schema to a file
      */
-    public static Test suite()
-    {
-        return new TestSuite( AppTest.class );
+    public void exportHibernateSchema(){
+        Configuration config = new Configuration().configure();
+        SchemaExport exporter = new SchemaExport(config);
+        exporter.create(false, true);
     }
+    
+    @Test
+    public void simpleEntityPersist() {
+        Session session = HibernateUtil.getSessionFactory().openSession();
 
-    /**
-     * Rigourous Test :-)
-     */
-    public void testApp()
-    {
-        assertTrue( true );
+        session.beginTransaction();
+        SimpleEntity entity = new SimpleEntity();
+
+        entity.setCreatedDate(new Date());
+
+        session.save(entity);
+        session.getTransaction().commit();
+
+        HibernateUtil.shutdown();
     }
 }

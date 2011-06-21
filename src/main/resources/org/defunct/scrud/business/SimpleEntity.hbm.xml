@@ -5,7 +5,7 @@
     <class name="org.defunct.scrud.business.SimpleEntity" table="SIMPLE_ENTITY">
         <id name="id">
             <column name="ID"/>
-            <--See  http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html_single/#portability-idgen -->
+            <!--See  http://docs.jboss.org/hibernate/core/3.6/reference/en-US/html_single/#portability-idgen -->
             <generator class="increment"/>
         </id>
         <property name="createdDate" type="date">

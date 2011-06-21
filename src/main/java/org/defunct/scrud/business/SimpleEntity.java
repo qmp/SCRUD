@@ -3,7 +3,7 @@ package org.defunct.scrud.business;
 import java.util.Date;
 
 /**
- *
+ * Dummy entity
  * @author qmp
  */
 public class SimpleEntity implements java.io.Serializable{
